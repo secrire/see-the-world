@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-h1 {
-  text-align: center;
-}
-
 ul {
   list-style-type: none;
   padding: 0;
@@ -25,4 +21,20 @@ li {
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
+}
+
+/* mapbox */
+
+.map-container {
+  height: calc(100vh - 108px);
+}
+
+/* icon svg */
+
+.icon-primary {
+  fill: #719FAB; 
+}
+
+.icon-secodary {
+  fill: #9AC7AC;
 }

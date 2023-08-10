@@ -1,13 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './containers/App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./containers/App";
+import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import { ThemeProvider } from "@mui/material/styles";
+
+import theme from "./stores/themeStyleStore";
+import { QuestionCountProvider } from "./stores/questionCountStore";
+import { SelectedCityProvider } from "./stores/selectedCityStore";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <QuestionCountProvider>
+        <SelectedCityProvider>
+          <App />
+        </SelectedCityProvider>
+      </QuestionCountProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
