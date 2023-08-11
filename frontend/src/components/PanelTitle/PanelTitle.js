@@ -32,19 +32,23 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
           >
             {isCorrectAnswer ? (
               <>
-                <Smile className="icon-secodary" style={iconStyle} />
-                <Typography variant="body4">Congrats!</Typography>
+                <Smile className="icon-secondary" style={iconStyle} />
+                <Typography variant="body3" sx={{ fontWeight: 800 }}>
+                  Congrats!
+                </Typography>
               </>
             ) : (
               <>
-                <Sad className="icon-secodary" style={iconStyle} />
-                <Typography variant="body4">Sorry..</Typography>
+                <Sad className="icon-secondary" style={iconStyle} />
+                <Typography variant="body3" sx={{ fontWeight: 800 }}>
+                  Sorry..
+                </Typography>
               </>
             )}
-            <Typography variant="body4">it's</Typography>
+            <Typography variant="body3">it's</Typography>
           </Stack>
 
-          <Typography variant="h1" sx={{ margin: "6px 0 -12px" }}>
+          <Typography variant="h1" sx={{ margin: "8px 0 -12px" }}>
             {selectedCity.name} {renderNameNative()}
           </Typography>
         </Stack>
@@ -54,24 +58,32 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
         case 0:
           return (
             <>
-              <Typography variant="h1" sx={{ marginBottom: "18px" }}>
-                Let's Play
-              </Typography>
-              <Typography variant="body5">
+              <Typography variant="h1">Let's Play</Typography>
+              <Typography
+                variant="body1"
+                lineHeight={2}
+                margin="8px 0 30px !important"
+              >
                 Do you feel confident? Here you'll challenge one of our most
                 difficult city questions!
               </Typography>
             </>
           );
         case citiesLength + 1:
-          return <Typography variant="h1">Quiz Completed!</Typography>;
+          return (
+            <Typography variant="h1">
+              Quiz Completed!
+            </Typography>
+          );
         default:
           return (
             <>
-              <Typography variant="body4">
+              <Typography variant="body3" margin="0 0 8px !important">
                 question {questionCount} of {citiesLength}
               </Typography>
-              <Typography variant="h1">Guess which city it is?</Typography>
+              <Typography variant="h1" margin="0 0 20px !important">
+                Guess which city it is?
+              </Typography>
             </>
           );
       }
@@ -83,7 +95,7 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
       spacing={1}
       direction="column"
       alignItems="start"
-      margin="36px 0 30px"
+      margin="32px 0 30px"
     >
       {renderTitle()}
     </Stack>

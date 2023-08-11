@@ -13,7 +13,7 @@ const Header = () => {
         <Typography variant="h2" sx={{ lineHeight: "64px", color: "#29114F" }}>
           See the w 
         </Typography>
-        <Earth className="icon-secodary" />
+        <Earth className="icon-secondary" />
         <Typography variant="h2" sx={{ lineHeight: "64px", color: "#29114F" }}>
           rld
         </Typography>
