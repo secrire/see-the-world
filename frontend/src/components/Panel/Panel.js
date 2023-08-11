@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Stack } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
-import PanelHeader from "../PanelHeader";
+import CircularProgressWithLabel from "../CircularProgressWithLabel";
 import PanelTitle from "../PanelTitle";
 import PanelContent from "../PanelContent";
 
@@ -13,14 +14,16 @@ const Panel = ({
   showCityInfo,
   setShowCityInfo,
   clickPlayAgain,
+  score,
+  setScore,
 }) => {
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(null);
-  const [score, setScore] = useState(0);
+  const [progressValue, setProgressValue] = useState(null);
   const { questionCount } = useQuestionCountContext();
   const { selectedCity } = useSelectedCityContext();
 
-  const checkAnswer = (cityName) => {
-    if (questionCount < cities.length) {
+  const clickCityOption = (cityName) => {
+    if (questionCount <= cities.length) {
       setShowCityInfo(true);
     }
 
@@ -31,9 +34,22 @@ const Panel = ({
     }
   };
 
+  useEffect(() => {
+    const tempValue = (questionCount / cities.length) * 100;
+    setProgressValue(tempValue);
+  }, [questionCount]);
+
   return (
     <>
-      <PanelHeader citiesLength={cities.length} />
+      <Stack spacing={2} direction="row" alignItems="center">
+        {questionCount > 0 && questionCount <= cities.length ? (
+          <CircularProgressWithLabel
+            // citiesLength={cities.length}
+            value={progressValue}
+          />
+        ) : null}
+      </Stack>
+
       <PanelTitle
         citiesLength={cities.length}
         showCityInfo={showCityInfo}
@@ -42,7 +58,7 @@ const Panel = ({
       <PanelContent
         cities={cities}
         clickNextQuestion={clickNextQuestion}
-        checkAnswer={checkAnswer}
+        clickCityOption={clickCityOption}
         showCityInfo={showCityInfo}
         clickPlayAgain={clickPlayAgain}
         score={score}

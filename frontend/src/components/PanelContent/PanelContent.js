@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Stack, Button, Typography } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
@@ -10,7 +10,7 @@ import PanelCityInfo from "../PanelCityInfo";
 const PanelContent = ({
   cities,
   clickNextQuestion,
-  checkAnswer,
+  clickCityOption,
   showCityInfo,
   clickPlayAgain,
   score,
@@ -39,27 +39,27 @@ const PanelContent = ({
       (allCity) => !cities.some((city) => city.name === allCity.name)
     );
 
-    // const randomIndexCities = Math.floor(Math.random() * cities.length);
     const randomIndexWrongCities = getRandomIndices(wrongCities, 2);
 
     const randomWrongCities = randomIndexWrongCities.map(
-      (index) => wrongCities[index].name
+      (index) =>
+        wrongCities[index].name
     );
 
     // Create an array with the selected cities' names
-    const tempCityOptions = [selectedCity.name, ...randomWrongCities];
-
+    const tempCityOptions = [selectedCity?.name, ...randomWrongCities];
+  
     // Shuffle the selected cities array
     const cityOptions = [...tempCityOptions].sort(() => Math.random() - 0.5);
 
-    return cityOptions.map((cityName) => (
+    return cityOptions.map((cityOption) => (
       <Button
-        onClick={() => checkAnswer(cityName)}
-        key={cityName}
+        onClick={() => clickCityOption(cityOption)}
+        key={cityOption}
         color="primary"
         variant="contained"
       >
-        {cityName}
+        {cityOption}
       </Button>
     ));
   };
@@ -74,7 +74,7 @@ const PanelContent = ({
             color="primary"
             variant="contained"
           >
-            Go Next
+            {questionCount === cities.length ? "Get Score" : "Go Next"}
           </Button>
         </>
       );
@@ -90,11 +90,11 @@ const PanelContent = ({
               Start
             </Button>
           );
-        case cities.length:
+        case cities.length + 1:
           return (
             <>
               <Typography variant="h4">
-                Scores: {(score / cities.length) * 100}
+                Scores: {Math.round((score / cities.length) * 100)}
               </Typography>
               <Typography variant="body1">
                 You have answered correctly for {score} out of {cities.length}{" "}

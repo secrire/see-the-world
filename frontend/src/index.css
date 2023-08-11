@@ -27,6 +27,7 @@ li {
 
 .map-container {
   height: calc(100vh - 108px);
+  border-radius: 10px;
 }
 
 /* icon svg */

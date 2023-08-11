@@ -1,16 +1,23 @@
 import React from "react";
-import { AppBar, Typography } from '@mui/material';
+import { Typography, Stack } from "@mui/material";
 
+import { ReactComponent as Earth } from "../../images/earth_black_24dp.svg";
 
-const Header = (props) => {
+const Header = () => {
   return (
-    <AppBar position="static" sx={{
-      // background:
-        // "linear-gradient(to bottom, rgb(65, 133, 242), rgb(85, 115, 237))",
-        background: 'transparent', boxShadow: 'none', height:'64px'
-    }}>
-        <Typography variant="h2" sx={{ lineHeight:'64px'}}>SEE THE WORLD</Typography>
-    </AppBar>
+      <Stack
+        direction="row"
+        alignItems="center"
+        height= "64px"
+      >
+        <Typography variant="h2" sx={{ lineHeight: "64px", color: "#29114F" }}>
+          See the w 
+        </Typography>
+        <Earth className="icon-secodary" />
+        <Typography variant="h2" sx={{ lineHeight: "64px", color: "#29114F" }}>
+          rld
+        </Typography>
+      </Stack>
   );
 };
 

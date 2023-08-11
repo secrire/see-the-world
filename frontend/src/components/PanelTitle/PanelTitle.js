@@ -24,7 +24,12 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
 
       return (
         <Stack alignItems="center" margin="0 auto !important">
-          <Stack direction="row" alignItems="center" spacing={1} marginTop="-24px">
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            marginTop="-24px"
+          >
             {isCorrectAnswer ? (
               <>
                 <Smile className="icon-secodary" style={iconStyle} />
@@ -58,7 +63,7 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
               </Typography>
             </>
           );
-        case citiesLength:
+        case citiesLength + 1:
           return <Typography variant="h1">Quiz Completed!</Typography>;
         default:
           return (
