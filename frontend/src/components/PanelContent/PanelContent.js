@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Stack, Button, Typography } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
@@ -42,13 +42,12 @@ const PanelContent = ({
     const randomIndexWrongCities = getRandomIndices(wrongCities, 2);
 
     const randomWrongCities = randomIndexWrongCities.map(
-      (index) =>
-        wrongCities[index].name
+      (index) => wrongCities[index].name
     );
 
     // Create an array with the selected cities' names
     const tempCityOptions = [selectedCity?.name, ...randomWrongCities];
-  
+
     // Shuffle the selected cities array
     const cityOptions = [...tempCityOptions].sort(() => Math.random() - 0.5);
 
@@ -93,9 +92,17 @@ const PanelContent = ({
         case cities.length + 1:
           return (
             <>
-              <Typography variant="h4">
-                Scores: {Math.round((score / cities.length) * 100)}
-              </Typography>
+              <Stack spacing={2} direction="row" alignItems="center">
+                <Typography variant="body5">Scores:</Typography>
+                <Typography
+                  variant="h1"
+                  sx={{ color: "#F14E25", fontSize: "5rem" }}
+                  letterSpacing={4}
+                >
+                  {Math.round((score / cities.length) * 100)}
+                </Typography>
+              </Stack>
+
               <Typography variant="body1">
                 You have answered correctly for {score} out of {cities.length}{" "}
                 questions.
@@ -116,7 +123,7 @@ const PanelContent = ({
   };
 
   return (
-    <Stack spacing={3} direction="column">
+    <Stack spacing={4} direction="column">
       {renderContent()}
     </Stack>
   );

@@ -7,7 +7,6 @@ import { useQuestionCountContext } from "../../stores/questionCountStore";
 const CircularProgressWithLabel = ({  value }) => {
   const { questionCount } = useQuestionCountContext();
 
-  // const progressValue = (questionCount / citiesLength) * 100;
   return (
     <Box
       sx={{

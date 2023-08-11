@@ -6,7 +6,7 @@ import MapQuiz from "./MapQuiz";
 const App = () => {
   const router = createBrowserRouter([
     {
-      path: "/map-quiz",
+      path: "/",
       element: <MapQuiz />,
     },
   ]);
