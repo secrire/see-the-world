@@ -22,6 +22,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser
   <https://www.mapbox.com/>
 - Material UI\
   <https://mui.com/material-ui/getting-started/>
+- Jest\
+  <https://jestjs.io/>
 
 &emsp;
 
@@ -39,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser
 │   │   ├── MapQuiz  
 │   │   ├── App.js  
 │   ├── images                          // Static image files
-│   ├── assets                          // Static files
+│   ├── assets                          // Static files / data
 │   │   ├── allCities.json  
 │   ├── stores                          // Global state management
 │   ├── utils                           // Global utility functions and env.js parameter settings 
@@ -48,7 +50,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser
 │   ├── index.css  
 ├── public  
 │   ├── index.html  
-├── node_modules  
+├── node_modules
+├── babel.config.js 
 ├── package.json  
 ├── package-lock.json   
 └── .gitignore  
