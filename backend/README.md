@@ -10,5 +10,7 @@ npm start
 
 ## Technologies Used
 
-- Node.js
-- Express.js
+- Node.js\
+  <https://nodejs.org/en>
+- Express.js\
+ <https://expressjs.com/>
