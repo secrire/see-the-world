@@ -1,8 +1,5 @@
 # See the world
-#### An interactive educational website that allows users to explore various cities and learn. 
-
-  
-🖥  
+#### A map quiz educational website that allows users to explore various cities and learn. 
 
 &emsp;
 
@@ -22,13 +19,6 @@
 - Frontend 
   - retrieves the data from backend and display it on an interactive map
   
-&emsp;
-
-## 👀 Demonstration
-    
-
-
-  
 &emsp;  
 
 ## 💪🏼 ToDo
@@ -36,7 +26,8 @@
 - Home page to introduce website 
 - Member system
 - Record scores
-- Add / edit / remove data by backend and database  
+- Add / edit / remove data by backend and database
+- RWD for mobile devices
 
 &emsp;
 
