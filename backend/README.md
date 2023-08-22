@@ -1,3 +1,7 @@
+#### Backend serves JSON data via REST API 
+  
+&emsp; 
+
 ## Technologies Used
 
 - Node.js\
