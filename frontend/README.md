@@ -1,3 +1,7 @@
+#### Frontend retrieves the data from backend and display it on an interactive map
+  
+&emsp; 
+
 ## Technologies Used
 
 - React\
