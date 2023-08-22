@@ -11,8 +11,15 @@
   
 &emsp;
 
-## Installation and Usage
+## 👩🏻‍💻 Installation and Usage
 
+ ```bash
+cd see-the-world/backend
+npm install
+npm start
+```
+
+&emsp;
 ```bash
 cd see-the-world/frontend
 npm install
@@ -21,17 +28,7 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser
 
-&emsp;
-
-## 👩🏻‍💻 Technologies
-
-- Backend
-  - serves JSON data via REST API 
-  
-- Frontend 
-  - retrieves the data from backend and display it on an interactive map
-  
-&emsp;  
+&emsp; 
 
 ## 💪🏼 ToDo
 
