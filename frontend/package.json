@@ -42,21 +42,13 @@
     ]
   },
   "jest": {
-    "testEnvironment": "jsdom",
-    "globals": {
-      "variableName": true
-    },
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest"
     },
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/path-to-file-mock.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ]
+    }
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.10",
