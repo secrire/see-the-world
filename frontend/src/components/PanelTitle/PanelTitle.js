@@ -3,8 +3,8 @@ import { Stack, Typography } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
-import { ReactComponent as Smile } from "../../images/smile_black_24dp.svg";
-import { ReactComponent as Sad } from "../../images/sad_black_24dp.svg";
+import Smile from "../../images/smile_black.svg";
+import Sad from "../../images/sad_black.svg";
 
 const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
   const { questionCount } = useQuestionCountContext();
@@ -70,11 +70,7 @@ const PanelTitle = ({ citiesLength, showCityInfo, isCorrectAnswer }) => {
             </>
           );
         case citiesLength + 1:
-          return (
-            <Typography variant="h1">
-              Quiz Completed!
-            </Typography>
-          );
+          return <Typography variant="h1">Quiz Completed!</Typography>;
         default:
           return (
             <>

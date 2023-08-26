@@ -43,10 +43,7 @@ const Panel = ({
     <>
       <Stack spacing={2} direction="row" alignItems="center">
         {questionCount > 0 && questionCount <= cities.length ? (
-          <CircularProgressWithLabel
-            // citiesLength={cities.length}
-            value={progressValue}
-          />
+          <CircularProgressWithLabel value={progressValue} />
         ) : null}
       </Stack>
 
