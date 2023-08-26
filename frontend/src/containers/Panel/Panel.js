@@ -4,7 +4,7 @@ import { Stack } from "@mui/material";
 import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
-import CircularProgressWithLabel from "../CircularProgressWithLabel";
+import CircularProgressWithLabel from "../../components/CircularProgressWithLabel";
 import PanelTitle from "../PanelTitle";
 import PanelContent from "../PanelContent";
 
@@ -43,7 +43,10 @@ const Panel = ({
     <>
       <Stack spacing={2} direction="row" alignItems="center">
         {questionCount > 0 && questionCount <= cities.length ? (
-          <CircularProgressWithLabel value={progressValue} />
+          <CircularProgressWithLabel
+            value={progressValue}
+            label={questionCount}
+          />
         ) : null}
       </Stack>
 
