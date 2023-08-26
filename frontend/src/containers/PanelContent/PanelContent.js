@@ -3,7 +3,7 @@ import { Stack, Button, Typography } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
-import allCities from "../../assets/allCities.json";
+import allCities from "../../data/allCities.json";
 
 import PanelCityInfo from "../PanelCityInfo";
 

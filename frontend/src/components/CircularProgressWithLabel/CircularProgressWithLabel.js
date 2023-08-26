@@ -1,12 +1,7 @@
 import React from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 
-import "../../index.css";
-import { useQuestionCountContext } from "../../stores/questionCountStore";
-
-const CircularProgressWithLabel = ({  value }) => {
-  const { questionCount } = useQuestionCountContext();
-
+const CircularProgressWithLabel = ({ value, label }) => {
   return (
     <Box
       sx={{
@@ -32,7 +27,7 @@ const CircularProgressWithLabel = ({  value }) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="body4">{questionCount}</Typography>
+        <Typography variant="body4">{label}</Typography>
       </Box>
     </Box>
   );

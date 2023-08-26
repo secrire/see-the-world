@@ -3,9 +3,9 @@ import { Box, Grid } from "@mui/material";
 
 import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
-import Header from "../../components/Header";
-import Panel from "../../components/Panel";
-import Map from "../../components/Map";
+import Header from "../../containers/Header";
+import Panel from "../../containers/Panel";
+import Map from "../../containers/Map";
 
 const MapQuiz = () => {
   const [cities, setCities] = useState([]);

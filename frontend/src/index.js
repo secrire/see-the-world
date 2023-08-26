@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 
-import App from "./containers/App";
-import reportWebVitals from "./reportWebVitals";
+import App from "./pages/App";
 
 import "./index.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -12,8 +11,7 @@ import theme from "./stores/themeStyleStore";
 import { QuestionCountProvider } from "./stores/questionCountStore";
 import { SelectedCityProvider } from "./stores/selectedCityStore";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const Main = () => (
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <QuestionCountProvider>
@@ -25,7 +23,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<Main />, document.getElementById("root"));
