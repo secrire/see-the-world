@@ -1,12 +1,6 @@
-## Installation and Usage
-
- ```bash
-cd see-the-world/backend
-npm install
-npm start
-```
-
-&emsp;
+#### Backend serves JSON data via REST API 
+  
+&emsp; 
 
 ## Technologies Used
 
