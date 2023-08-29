@@ -1,58 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 
-import { useQuestionCountContext } from "../../stores/questionCountStore";
-import { useSelectedCityContext } from "../../stores/selectedCityStore";
 import Header from "../../containers/Header";
 import Panel from "../../containers/Panel";
-import Map from "../../containers/Map";
+// import Map from "../../containers/Map";
 
 const MapQuiz = () => {
   const [cities, setCities] = useState([]);
   const [remainingCities, setRemainingCities] = useState([]);
-  const [showCityInfo, setShowCityInfo] = useState(false);
-  const [score, setScore] = useState(0);
   const [marker, setMarker] = useState(null);
 
-  const { questionCount, setQuestionCount } = useQuestionCountContext();
-  const { selectedCity, setSelectedCity } = useSelectedCityContext();
-
-  const clickNextQuestion = () => {
-    // remove map marker if there was one
-    if (questionCount > 0) {
-      marker.remove();
-      setMarker(null);
-    }
-
-    const filteredCities = remainingCities.filter(
-      (city) => city?.name !== selectedCity?.name
-    );
-    const randomIndexCities = Math.floor(Math.random() * filteredCities.length);
-    setRemainingCities(filteredCities);
-    setSelectedCity(filteredCities[randomIndexCities]);
-    setQuestionCount(questionCount + 1);
-    setShowCityInfo(false);
-  };
-
-  const clickPlayAgain = () => {
-    setQuestionCount(0);
-    setScore(0);
-
-    setRemainingCities(cities);
-  };
-
-  const init = () => {
+  const getCitiesData = () => {
     fetch("http://localhost:8000/api/cities")
       .then((response) => response.json())
       .then((data) => {
         setCities(data);
         setRemainingCities(data);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error getCitiesData:", error));
   };
 
   useEffect(() => {
-    init();
+    getCitiesData();
   }, []);
 
   return (
@@ -78,12 +47,10 @@ const MapQuiz = () => {
         >
           <Panel
             cities={cities}
-            clickNextQuestion={clickNextQuestion}
-            showCityInfo={showCityInfo}
-            setShowCityInfo={setShowCityInfo}
-            clickPlayAgain={clickPlayAgain}
-            score={score}
-            setScore={setScore}
+            remainingCities={remainingCities}
+            setRemainingCities={setRemainingCities}
+            marker={marker}
+            setMarker={setMarker}
           />
         </Grid>
         <Grid
@@ -93,7 +60,7 @@ const MapQuiz = () => {
             paddingLeft: "40px",
           }}
         >
-          <Map setMarker={setMarker} />
+          {/* <Map setMarker={setMarker} /> */}
         </Grid>
       </Grid>
     </Box>

@@ -1,70 +1,113 @@
-import React, { useEffect, useState } from "react";
-import { Stack } from "@mui/material";
+import React, { useState } from "react";
 
-import { useQuestionCountContext } from "../../stores/questionCountStore";
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
-import CircularProgressWithLabel from "../../components/CircularProgressWithLabel";
-import PanelTitle from "../PanelTitle";
-import PanelContent from "../PanelContent";
+import PanelStart from "../PanelStart";
+import PanelCityOptions from "../PanelCityOptions";
+import PanelCityInfo from "../PanelCityInfo";
+import PanelFinish from "../PanelFinish";
 
 const Panel = ({
   cities,
-  clickNextQuestion,
-  showCityInfo,
-  setShowCityInfo,
-  clickPlayAgain,
-  score,
-  setScore,
+  remainingCities,
+  setRemainingCities,
+  marker,
+  setMarker,
 }) => {
+  const [questionCount, setQuestionCount] = useState(0);
+  const [activePanel, setActivePanel] = useState("start");
+  const [score, setScore] = useState(0);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(null);
-  const [progressValue, setProgressValue] = useState(null);
-  const { questionCount } = useQuestionCountContext();
-  const { selectedCity } = useSelectedCityContext();
+  const { selectedCity, setSelectedCity } = useSelectedCityContext();
+
+  const getSelectedCity = () => {
+    const filteredCities = remainingCities.filter(
+      (city) => city?.name !== selectedCity?.name
+    );
+    const randomIndexCities = Math.floor(Math.random() * filteredCities.length);
+    setRemainingCities(filteredCities);
+    setSelectedCity(filteredCities[randomIndexCities]);
+  };
+
+  const clickStartQuestion = () => {
+    getSelectedCity();
+    setActivePanel("cityOptions");
+    setQuestionCount((prevQuestionCount) => prevQuestionCount + 1);
+    // setQuestionCount(questionCount + 1);
+  };
+
+  const clickNextQuestion = () => {
+    // remove map marker
+    // marker.remove();
+    setMarker(null);
+
+    getSelectedCity();
+    setActivePanel("cityOptions");
+    setQuestionCount((prevQuestionCount) => prevQuestionCount + 1);
+    // setQuestionCount(questionCount + 1);
+  };
+
+  const clickGetScore = () => {
+    // remove map marker
+    // marker.remove();
+    setMarker(null);
+
+    setActivePanel("finish");
+  };
+
+  const clickPlayAgain = () => {
+    setQuestionCount(0);
+    setScore(0);
+    setActivePanel("start");
+    setRemainingCities(cities);
+    setSelectedCity(null);
+  };
 
   const clickCityOption = (cityName) => {
-    if (questionCount <= cities.length) {
-      setShowCityInfo(true);
-    }
+    setActivePanel("cityInfo");
 
     const isCorrect = cityName === selectedCity.name;
     setIsCorrectAnswer(isCorrect);
-    if (isCorrect) {
-      setScore(score + 1);
+    setScore((prevScore) => (isCorrect ? prevScore + 1 : prevScore));
+  };
+
+  const renderPanel = () => {
+    switch (activePanel) {
+      case "start":
+        return <PanelStart clickStartQuestion={clickStartQuestion} />;
+      case "cityOptions":
+        return (
+          <PanelCityOptions
+            cities={cities}
+            questionCount={questionCount}
+            clickCityOption={clickCityOption}
+          />
+        );
+      case "cityInfo":
+        return (
+          <PanelCityInfo
+            cities={cities}
+            questionCount={questionCount}
+            isCorrectAnswer={isCorrectAnswer}
+            clickNextQuestion={clickNextQuestion}
+            clickGetScore={clickGetScore}
+          />
+        );
+      case "finish":
+        return (
+          <PanelFinish
+            cities={cities}
+            clickPlayAgain={clickPlayAgain}
+            score={score}
+          />
+        );
+
+      default:
+        return null;
     }
   };
 
-  useEffect(() => {
-    const tempValue = (questionCount / cities.length) * 100;
-    setProgressValue(tempValue);
-  }, [questionCount]);
-
-  return (
-    <>
-      <Stack spacing={2} direction="row" alignItems="center">
-        {questionCount > 0 && questionCount <= cities.length ? (
-          <CircularProgressWithLabel
-            value={progressValue}
-            label={questionCount}
-          />
-        ) : null}
-      </Stack>
-
-      <PanelTitle
-        citiesLength={cities.length}
-        showCityInfo={showCityInfo}
-        isCorrectAnswer={isCorrectAnswer}
-      />
-      <PanelContent
-        cities={cities}
-        clickNextQuestion={clickNextQuestion}
-        clickCityOption={clickCityOption}
-        showCityInfo={showCityInfo}
-        clickPlayAgain={clickPlayAgain}
-        score={score}
-      />
-    </>
-  );
+  return <>{renderPanel()}</>;
 };
 
 export default Panel;

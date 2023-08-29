@@ -1,10 +1,22 @@
 import React from "react";
-import { Stack, Typography, Grid, Box } from "@mui/material";
+import { Stack, Typography, Grid, Box, Button } from "@mui/material";
 
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
-const PanelCityInfo = () => {
+import CircularProgressWithLabel from "../../components/CircularProgressWithLabel";
+import Smile from "../../images/smile_black.svg";
+import Sad from "../../images/sad_black.svg";
+
+const PanelCityInfo = ({
+  cities,
+  questionCount,
+  isCorrectAnswer,
+  clickNextQuestion,
+  clickGetScore,
+}) => {
   const { selectedCity } = useSelectedCityContext();
+
+  const progressValue = (questionCount / cities.length) * 100;
 
   const gridBoxData = [
     { label: "Country", value: selectedCity.country },
@@ -13,9 +25,53 @@ const PanelCityInfo = () => {
     { label: "Founded", value: selectedCity.founded },
   ];
 
+  const iconStyle = {
+    width: 42,
+    height: 42,
+  };
+
+  const renderNameNative = () => {
+    const { name, name_native } = selectedCity;
+    return name !== name_native ? `(${name_native})` : null;
+  };
+
   return (
     <>
       <Box sx={{ width: "100%" }}>
+        <Stack alignItems="center" margin="0 auto !important">
+          <CircularProgressWithLabel
+            value={progressValue}
+            label={questionCount}
+          />
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            marginTop="-24px"
+          >
+            {isCorrectAnswer ? (
+              <>
+                <Smile className="icon-secondary" style={iconStyle} />
+                <Typography variant="body3" sx={{ fontWeight: 800 }}>
+                  Congrats!
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Sad className="icon-secondary" style={iconStyle} />
+                <Typography variant="body3" sx={{ fontWeight: 800 }}>
+                  Sorry..
+                </Typography>
+              </>
+            )}
+            <Typography variant="body3">it's</Typography>
+          </Stack>
+
+          <Typography variant="h1" sx={{ margin: "8px 0 -12px" }}>
+            {selectedCity.name} {renderNameNative()}
+          </Typography>
+        </Stack>
+
         <Grid container spacing={2.5}>
           {gridBoxData.map((data) => (
             <Grid item xs={6} key={data.label}>
@@ -67,6 +123,15 @@ const PanelCityInfo = () => {
             </Typography>
           ))}
         </Stack>
+        <Button
+          onClick={
+            questionCount === cities.length ? clickGetScore : clickNextQuestion
+          }
+          color="primary"
+          variant="contained"
+        >
+          {questionCount === cities.length ? "Get Score" : "Go Next"}
+        </Button>
       </Box>
     </>
   );

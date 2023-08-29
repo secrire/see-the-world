@@ -34,11 +34,11 @@ const Map = ({ setMarker }) => {
       ];
 
       // Add a marker for the selected city
-      const marker = new mapboxgl.Marker()
-        .setLngLat(selectedCoordinates)
-        .addTo(map.current);
+      // const tempMarker = new mapboxgl.Marker()
+      //   .setLngLat(selectedCoordinates)
+      //   .addTo(map.current);
 
-      setMarker(marker);
+      // setMarker(tempMarker);
 
       // Fly to the selected city
       map.current.flyTo({

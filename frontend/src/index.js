@@ -8,17 +8,14 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "./stores/themeStyleStore";
-import { QuestionCountProvider } from "./stores/questionCountStore";
 import { SelectedCityProvider } from "./stores/selectedCityStore";
 
 const Main = () => (
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <QuestionCountProvider>
-        <SelectedCityProvider>
-          <App />
-        </SelectedCityProvider>
-      </QuestionCountProvider>
+      <SelectedCityProvider>
+        <App />
+      </SelectedCityProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
