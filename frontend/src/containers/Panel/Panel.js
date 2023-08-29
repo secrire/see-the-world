@@ -31,25 +31,23 @@ const Panel = ({
 
   const clickStartQuestion = () => {
     getSelectedCity();
+    setQuestionCount(questionCount + 1);
     setActivePanel("cityOptions");
-    setQuestionCount((prevQuestionCount) => prevQuestionCount + 1);
-    // setQuestionCount(questionCount + 1);
   };
 
   const clickNextQuestion = () => {
     // remove map marker
-    // marker.remove();
+    marker.remove();
     setMarker(null);
 
     getSelectedCity();
+    setQuestionCount(questionCount + 1);
     setActivePanel("cityOptions");
-    setQuestionCount((prevQuestionCount) => prevQuestionCount + 1);
-    // setQuestionCount(questionCount + 1);
   };
 
   const clickGetScore = () => {
     // remove map marker
-    // marker.remove();
+    marker.remove();
     setMarker(null);
 
     setActivePanel("finish");
@@ -58,9 +56,9 @@ const Panel = ({
   const clickPlayAgain = () => {
     setQuestionCount(0);
     setScore(0);
-    setActivePanel("start");
     setRemainingCities(cities);
     setSelectedCity(null);
+    setActivePanel("start");
   };
 
   const clickCityOption = (cityName) => {

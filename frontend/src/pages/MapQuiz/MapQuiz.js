@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 
 import Header from "../../containers/Header";
 import Panel from "../../containers/Panel";
-// import Map from "../../containers/Map";
+import Map from "../../containers/Map";
 
 const MapQuiz = () => {
   const [cities, setCities] = useState([]);
@@ -60,7 +60,7 @@ const MapQuiz = () => {
             paddingLeft: "40px",
           }}
         >
-          {/* <Map setMarker={setMarker} /> */}
+          <Map setMarker={setMarker} />
         </Grid>
       </Grid>
     </Box>

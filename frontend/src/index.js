@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import App from "./pages/App";
 
@@ -20,4 +20,6 @@ const Main = () => (
   </React.StrictMode>
 );
 
-ReactDOM.render(<Main />, document.getElementById("root"));
+const mainContainer = document.getElementById("root");
+const root = createRoot(mainContainer); // createRoot(mainContainer!) if using TypeScript
+root.render(<Main />);

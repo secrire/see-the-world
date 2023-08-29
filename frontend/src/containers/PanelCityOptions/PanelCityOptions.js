@@ -49,7 +49,6 @@ const PanelCityOptions = ({ cities, questionCount, clickCityOption }) => {
         {cityOptions.map((cityOption) => (
           <Button
             onClick={() => clickCityOption(cityOption)}
-            // value={cityOption}
             key={cityOption}
             color="primary"
             variant="contained"
