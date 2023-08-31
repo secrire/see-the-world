@@ -7,6 +7,11 @@ import CircularProgressWithLabel from "../../components/CircularProgressWithLabe
 import Smile from "../../images/smile_black.svg";
 import Sad from "../../images/sad_black.svg";
 
+const iconStyle = {
+  width: 42,
+  height: 42,
+};
+
 const PanelCityInfo = ({
   cities,
   questionCount,
@@ -25,11 +30,6 @@ const PanelCityInfo = ({
     { label: "Founded", value: selectedCity.founded },
   ];
 
-  const iconStyle = {
-    width: 42,
-    height: 42,
-  };
-
   const renderNameNative = () => {
     const { name, name_native } = selectedCity;
     return name !== name_native ? `(${name_native})` : null;
@@ -37,102 +37,100 @@ const PanelCityInfo = ({
 
   return (
     <>
-      <Box sx={{ width: "100%" }}>
-        <Stack alignItems="center" margin="0 auto !important">
-          <CircularProgressWithLabel
-            value={progressValue}
-            label={questionCount}
-          />
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={1}
-            marginTop="-24px"
-          >
-            {isCorrectAnswer ? (
-              <>
-                <Smile className="icon-secondary" style={iconStyle} />
-                <Typography variant="body3" sx={{ fontWeight: 800 }}>
-                  Congrats!
-                </Typography>
-              </>
-            ) : (
-              <>
-                <Sad className="icon-secondary" style={iconStyle} />
-                <Typography variant="body3" sx={{ fontWeight: 800 }}>
-                  Sorry..
-                </Typography>
-              </>
-            )}
-            <Typography variant="body3">it's</Typography>
-          </Stack>
+      <Stack alignItems="center" mb="16px">
+        <CircularProgressWithLabel
+          value={progressValue}
+          label={questionCount}
+          color="primary"
+        />
 
-          <Typography variant="h1" sx={{ margin: "8px 0 -12px" }}>
-            {selectedCity.name} {renderNameNative()}
+        <Stack direction="row" alignItems="center" spacing={1} m="4px 0 4px">
+          {isCorrectAnswer ? (
+            <Smile className="icon-secondary" style={iconStyle} />
+          ) : (
+            <Sad className="icon-secondary" style={iconStyle} />
+          )}
+          <Typography variant="subtitle1" color="secondary" fontWeight="800">
+            {isCorrectAnswer ? "Congrats!" : "Sorry.."}
+          </Typography>
+          <Typography variant="body1" color="secondary">
+            it's
           </Typography>
         </Stack>
 
-        <Grid container spacing={2.5}>
-          {gridBoxData.map((data) => (
-            <Grid item xs={6} key={data.label}>
-              <Box
-                sx={{
-                  bgcolor: "#EAEEE2",
-                  height: "60px",
-                  p: 2,
-                  borderRadius: "6px",
-                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                }}
+        <Typography variant="h4" textAlign="center">
+          {selectedCity.name} {renderNameNative()}
+        </Typography>
+      </Stack>
+
+      <Grid container spacing={2.5}>
+        {gridBoxData.map((data) => (
+          <Grid item xs={6} key={data.label}>
+            <Box
+              bgcolor="green.main"
+              height="60px"
+              p="12px 16px"
+              borderRadius="6px"
+              boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+            >
+              <Typography
+                variant="caption"
+                color="gray.main"
+                border="1px solid gray"
+                p="2px 8px"
+                borderRadius="10px"
+                width="fit-content"
               >
-                <Typography
-                  variant="body6"
-                  sx={{
-                    border: "1px solid gray",
-                    p: "2px 8px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  {data.label}
-                </Typography>
-                <Typography variant="h2" marginTop="20px">
-                  {data.value}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-      <Box
-        sx={{
-          bgcolor: "#D4D1CA",
-          p: 2,
-          borderRadius: "6px",
-          marginTop: "24px !important",
-        }}
-      >
+                {data.label}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                fontWeight="bold"
+                color="gray.dark"
+                mt="14px"
+              >
+                {data.value}
+              </Typography>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Box bgcolor="#D4D1CA" p="12px 16px" borderRadius="6px" m="24px 0 28px">
         <Typography
-          variant="body6"
-          sx={{ border: "1px solid gray", p: "2px 8px", borderRadius: "10px" }}
+          variant="caption"
+          color="gray.main"
+          border="1px solid gray"
+          p="2px 8px"
+          borderRadius="10px"
+          width="fit-content"
         >
           Landmarks
         </Typography>
-        <Stack spacing={1} direction="column" sx={{ margin: "14px 0 0" }}>
+        <Stack spacing={1} direction="column" mt="14px">
           {selectedCity.landmarks.map((landmark) => (
-            <Typography variant="body2" key={landmark}>
+            <Typography
+              key={landmark}
+              variant="body1"
+              fontWeight="700"
+              color="gray.dark"
+            >
               {`-  ${landmark}`}
             </Typography>
           ))}
         </Stack>
-        <Button
-          onClick={
-            questionCount === cities.length ? clickGetScore : clickNextQuestion
-          }
-          color="primary"
-          variant="contained"
-        >
-          {questionCount === cities.length ? "Get Score" : "Go Next"}
-        </Button>
       </Box>
+
+      <Button
+        onClick={
+          questionCount === cities.length ? clickGetScore : clickNextQuestion
+        }
+        color="primary"
+        variant="contained"
+        fullWidth
+      >
+        {questionCount === cities.length ? "Get Score" : "Go Next"}
+      </Button>
     </>
   );
 };

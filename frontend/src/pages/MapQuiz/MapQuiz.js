@@ -28,7 +28,7 @@ const MapQuiz = () => {
     <Box
       sx={{
         position: "relative",
-        padding: "12px 60px 46px",
+        p: "12px 60px 46px",
         background: "#DCECEF",
       }}
     >
@@ -41,7 +41,8 @@ const MapQuiz = () => {
             background: "rgb(254, 254, 254)",
             boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1)",
             borderRadius: "10px",
-            padding: "26px 34px",
+            p: "26px 34px",
+            maxHeight: "-webkit-fill-available",
             overflow: "scroll",
           }}
         >
@@ -57,7 +58,7 @@ const MapQuiz = () => {
           item
           xs
           sx={{
-            paddingLeft: "40px",
+            pl: "40px",
           }}
         >
           <Map setMarker={setMarker} />

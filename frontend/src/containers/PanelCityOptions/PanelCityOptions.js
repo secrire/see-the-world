@@ -52,6 +52,7 @@ const PanelCityOptions = ({ cities, questionCount, clickCityOption }) => {
             key={cityOption}
             color="primary"
             variant="contained"
+            fullWidth
           >
             {cityOption}
           </Button>
@@ -61,21 +62,22 @@ const PanelCityOptions = ({ cities, questionCount, clickCityOption }) => {
   };
 
   return (
-    <Stack
-      spacing={1}
-      direction="column"
-      alignItems="start"
-      margin="32px 0 30px"
-    >
-      <CircularProgressWithLabel value={progressValue} label={questionCount} />
-      <Typography variant="body3" margin="0 0 8px !important">
+    <>
+      <Stack>
+        <CircularProgressWithLabel
+          value={progressValue}
+          label={questionCount}
+          color="primary"
+        />
+      </Stack>
+      <Typography variant="subtitle2" color="secondary" m="26px 0 16px">
         question {questionCount} of {cities.length}
       </Typography>
-      <Typography variant="h1" margin="0 0 20px !important">
+      <Typography variant="h4" mb="40px">
         Guess which city it is?
       </Typography>
       {renderCityOptions()}
-    </Stack>
+    </>
   );
 };
 

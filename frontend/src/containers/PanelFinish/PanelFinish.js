@@ -3,39 +3,32 @@ import { Stack, Typography, Button } from "@mui/material";
 
 const PanelFinish = ({ cities, clickPlayAgain, score }) => {
   return (
-    // <Stack
-    //   spacing={1}
-    //   direction="column"
-    //   alignItems="start"
-    //   margin="32px 0 30px"
-    // >
     <>
-      <Typography variant="h1">Quiz Completed!</Typography>
-      <Stack spacing={2} direction="row" alignItems="center">
-        <Typography variant="body5">Scores:</Typography>
-        <Typography
-          variant="h1"
-          sx={{ color: "#F14E25", fontSize: "5rem" }}
-          letterSpacing={4}
-        >
+      <Typography variant="h4" m="32px 0 20px">
+        Quiz Completed!
+      </Typography>
+      <Stack spacing={2} direction="row" alignItems="center" mb="18px">
+        <Typography variant="body2" color="green.dark">
+          Scores:
+        </Typography>
+        <Typography variant="h1" color="red.main" letterSpacing={4}>
           {Math.round((score / cities.length) * 100)}
         </Typography>
       </Stack>
 
-      <Typography variant="body1">
+      <Typography variant="subtitle2" color="gray.main" mb="70px">
         You have answered correctly for {score} out of {cities.length}{" "}
         questions.
       </Typography>
       <Button
-        onClick={() => clickPlayAgain()}
+        onClick={clickPlayAgain}
         color="primary"
         variant="contained"
+        fullWidth
       >
         Play Again
       </Button>
     </>
-
-    // </Stack>
   );
 };
 

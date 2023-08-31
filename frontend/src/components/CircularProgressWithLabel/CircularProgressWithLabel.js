@@ -1,20 +1,16 @@
 import React from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 
-const CircularProgressWithLabel = ({ value, label }) => {
+const CircularProgressWithLabel = ({ value, label, color }) => {
   return (
     <Box
       sx={{
         position: "relative",
         display: "inline-flex",
-        margin: "0 auto!important",
+        m: "0 auto",
       }}
     >
-      <CircularProgress
-        variant="determinate"
-        value={value}
-        sx={{ color: "#719FA8" }}
-      />
+      <CircularProgress variant="determinate" value={value} color={color} />
       <Box
         sx={{
           top: 0,
@@ -27,7 +23,9 @@ const CircularProgressWithLabel = ({ value, label }) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="body4">{label}</Typography>
+        <Typography variant="body1" color={color} fontWeight={700}>
+          {label}
+        </Typography>
       </Box>
     </Box>
   );

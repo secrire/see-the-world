@@ -1,26 +1,30 @@
 import React from "react";
-import { Stack, Typography, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 const PanelStart = ({ clickStartQuestion }) => {
   return (
-    // <Stack
-    //   spacing={1}
-    //   direction="column"
-    //   alignItems="start"
-    //   margin="32px 0 30px"
-    // >
     <>
-      <Typography variant="h1">Let's Play</Typography>
-      <Typography variant="body1" lineHeight={2} margin="8px 0 30px !important">
+      <Typography variant="h4" m="40px 0 20px">
+        Let's Play
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        color="gray.main"
+        lineHeight={2}
+        mb="60px"
+      >
         Do you feel confident? Here you'll challenge one of our most difficult
         city questions!
       </Typography>
-      <Button onClick={clickStartQuestion} color="primary" variant="contained">
+      <Button
+        onClick={clickStartQuestion}
+        color="primary"
+        variant="contained"
+        fullWidth
+      >
         Start
       </Button>
     </>
-
-    // </Stack>
   );
 };
 
