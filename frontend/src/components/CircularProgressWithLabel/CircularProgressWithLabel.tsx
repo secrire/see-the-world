@@ -1,7 +1,19 @@
-import React from "react";
-import { Box, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  CircularProgressProps,
+} from "@mui/material";
 
-const CircularProgressWithLabel = ({ value, label, color }) => {
+interface CircularProgressWithLabelProps extends CircularProgressProps {
+  label: number;
+}
+
+const CircularProgressWithLabel = ({
+  value,
+  label,
+  color,
+}: CircularProgressWithLabelProps) => {
   return (
     <Box
       sx={{

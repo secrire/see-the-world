@@ -1,11 +1,19 @@
-import React from "react";
 import { Stack, Typography, Grid, Box, Button } from "@mui/material";
 
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
+import { CityType } from "../../pages/MapQuiz";
 import CircularProgressWithLabel from "../../components/CircularProgressWithLabel";
 import Smile from "../../images/smile_black.svg";
 import Sad from "../../images/sad_black.svg";
+
+type PanelCityInfoProps = {
+  cities: CityType[];
+  questionCount: number;
+  isCorrectAnswer: boolean;
+  clickNextQuestion: () => void;
+  clickGetScore: () => void;
+};
 
 const iconStyle = {
   width: 42,
@@ -18,22 +26,21 @@ const PanelCityInfo = ({
   isCorrectAnswer,
   clickNextQuestion,
   clickGetScore,
-}) => {
+}: PanelCityInfoProps) => {
   const { selectedCity } = useSelectedCityContext();
 
   const progressValue = (questionCount / cities.length) * 100;
 
   const gridBoxData = [
-    { label: "Country", value: selectedCity.country },
-    { label: "Contient", value: selectedCity.continent },
-    { label: "Population", value: selectedCity.population },
-    { label: "Founded", value: selectedCity.founded },
+    { label: "Country", value: selectedCity?.country },
+    { label: "Contient", value: selectedCity?.continent },
+    { label: "Population", value: selectedCity?.population },
+    { label: "Founded", value: selectedCity?.founded },
   ];
 
-  const renderNameNative = () => {
-    const { name, name_native } = selectedCity;
-    return name !== name_native ? `(${name_native})` : null;
-  };
+  const renderNameNative = () =>
+    selectedCity?.name !== selectedCity?.name_native &&
+    `(${selectedCity?.name_native})`;
 
   return (
     <>
@@ -59,7 +66,7 @@ const PanelCityInfo = ({
         </Stack>
 
         <Typography variant="h4" textAlign="center">
-          {selectedCity.name} {renderNameNative()}
+          {selectedCity?.name} {renderNameNative()}
         </Typography>
       </Stack>
 
@@ -108,7 +115,7 @@ const PanelCityInfo = ({
           Landmarks
         </Typography>
         <Stack spacing={1} direction="column" mt="14px">
-          {selectedCity.landmarks.map((landmark) => (
+          {selectedCity?.landmarks.map((landmark: string) => (
             <Typography
               key={landmark}
               variant="body1"

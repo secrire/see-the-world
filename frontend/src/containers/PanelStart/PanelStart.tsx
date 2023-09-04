@@ -1,7 +1,10 @@
-import React from "react";
 import { Typography, Button } from "@mui/material";
 
-const PanelStart = ({ clickStartQuestion }) => {
+type PanelStartProps = {
+  clickStartQuestion: () => void;
+};
+
+const PanelStart = ({ clickStartQuestion }: PanelStartProps) => {
   return (
     <>
       <Typography variant="h4" m="40px 0 20px">

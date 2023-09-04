@@ -1,16 +1,29 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Marker as MapboxMarker } from "mapbox-gl";
 import { Box, Grid } from "@mui/material";
 
 import Header from "../../containers/Header";
 import Panel from "../../containers/Panel";
 import Map from "../../containers/Map";
 
-const MapQuiz = () => {
-  const [cities, setCities] = useState([]);
-  const [remainingCities, setRemainingCities] = useState([]);
-  const [marker, setMarker] = useState(null);
+export interface CityType {
+  name: string;
+  name_native: string;
+  country: string;
+  continent: string;
+  latitude: string;
+  longitude: string;
+  population: string;
+  founded: string;
+  landmarks: string[];
+}
 
-  const getCitiesData = () => {
+const MapQuiz = () => {
+  const [cities, setCities] = useState<CityType[]>([]);
+  const [remainingCities, setRemainingCities] = useState<CityType[]>([]);
+  const [marker, setMarker] = useState<MapboxMarker | null>(null);
+
+  const getCitiesData = (): void => {
     fetch("http://localhost:8000/api/cities")
       .then((response) => response.json())
       .then((data) => {

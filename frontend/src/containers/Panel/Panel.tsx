@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Marker as MapboxMarker } from "mapbox-gl";
 
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
+import { CityType } from "../../pages/MapQuiz";
 import PanelStart from "../PanelStart";
 import PanelCityOptions from "../PanelCityOptions";
 import PanelCityInfo from "../PanelCityInfo";
 import PanelFinish from "../PanelFinish";
+
+type PanelProps = {
+  cities: CityType[];
+  remainingCities: CityType[];
+  setRemainingCities: React.Dispatch<React.SetStateAction<CityType[]>>;
+  marker: MapboxMarker | null;
+  setMarker: React.Dispatch<React.SetStateAction<MapboxMarker | null>>;
+};
+
+type ActivePanelType = "start" | "cityOptions" | "cityInfo" | "finish";
 
 const Panel = ({
   cities,
@@ -13,11 +25,11 @@ const Panel = ({
   setRemainingCities,
   marker,
   setMarker,
-}) => {
-  const [questionCount, setQuestionCount] = useState(0);
-  const [activePanel, setActivePanel] = useState("start");
-  const [score, setScore] = useState(0);
-  const [isCorrectAnswer, setIsCorrectAnswer] = useState(null);
+}: PanelProps) => {
+  const [questionCount, setQuestionCount] = useState<number>(0);
+  const [activePanel, setActivePanel] = useState<ActivePanelType>("start");
+  const [score, setScore] = useState<number>(0);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
   const { selectedCity, setSelectedCity } = useSelectedCityContext();
 
   const getSelectedCity = () => {
@@ -37,7 +49,7 @@ const Panel = ({
 
   const clickNextQuestion = () => {
     // remove map marker
-    marker.remove();
+    marker?.remove();
     setMarker(null);
 
     getSelectedCity();
@@ -47,7 +59,7 @@ const Panel = ({
 
   const clickGetScore = () => {
     // remove map marker
-    marker.remove();
+    marker?.remove();
     setMarker(null);
 
     setActivePanel("finish");
@@ -61,10 +73,10 @@ const Panel = ({
     setActivePanel("start");
   };
 
-  const clickCityOption = (cityName) => {
+  const clickCityOption = (cityName: string | undefined): void => {
     setActivePanel("cityInfo");
 
-    const isCorrect = cityName === selectedCity.name;
+    const isCorrect = cityName === selectedCity?.name;
     setIsCorrectAnswer(isCorrect);
     setScore((prevScore) => (isCorrect ? prevScore + 1 : prevScore));
   };

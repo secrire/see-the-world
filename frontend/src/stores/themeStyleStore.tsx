@@ -1,6 +1,20 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, Theme } from "@mui/material/styles";
 
-const theme = createTheme({
+declare module "@mui/material/styles" {
+  interface Palette {
+    green: Palette["primary"];
+    gray: Palette["primary"];
+    red: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    green?: PaletteOptions["primary"];
+    gray?: PaletteOptions["primary"];
+    red?: PaletteOptions["primary"];
+  }
+}
+
+const theme: Theme = createTheme({
   palette: {
     primary: {
       main: "#719FA8",
@@ -22,7 +36,6 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Arial, Roboto",
-    align: "left",
     // Main title
     h4: {
       fontWeight: "bold",

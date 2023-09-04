@@ -1,14 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-
-import App from "./pages/App";
-
-import "./index.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { ThemeProvider } from "@mui/material/styles";
 
+import App from "./pages/App";
 import theme from "./stores/themeStyleStore";
 import { SelectedCityProvider } from "./stores/selectedCityStore";
+
+import "./index.css";
 
 const Main = () => (
   <React.StrictMode>
@@ -21,5 +20,5 @@ const Main = () => (
 );
 
 const mainContainer = document.getElementById("root");
-const root = createRoot(mainContainer); // createRoot(mainContainer!) if using TypeScript
+const root = createRoot(mainContainer!);
 root.render(<Main />);

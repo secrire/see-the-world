@@ -1,18 +1,28 @@
-import React from "react";
 import { Stack, Typography, Button } from "@mui/material";
 
 import { useSelectedCityContext } from "../../stores/selectedCityStore";
 
+import { CityType } from "../../pages/MapQuiz";
 import CircularProgressWithLabel from "../../components/CircularProgressWithLabel";
 import allCities from "../../data/allCities.json";
 
-const PanelCityOptions = ({ cities, questionCount, clickCityOption }) => {
+type PanelCityOptionsProps = {
+  cities: CityType[];
+  questionCount: number;
+  clickCityOption: (cityName: string | undefined) => void;
+};
+
+const PanelCityOptions = ({
+  cities,
+  questionCount,
+  clickCityOption,
+}: PanelCityOptionsProps) => {
   const { selectedCity } = useSelectedCityContext();
 
   const progressValue = (questionCount / cities.length) * 100;
 
-  const getRandomIndices = (array, count) => {
-    const randomIndices = [];
+  const getRandomIndices = (array: any[], count: number): number[] => {
+    const randomIndices: number[] = [];
     const availableIndices = array.length;
 
     while (randomIndices.length < count) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography, Stack } from "@mui/material";
 
 import Earth from "../../images/earth_black_24dp.svg";

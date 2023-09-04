@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
@@ -13,11 +13,15 @@ module.exports = {
     static: path.join(__dirname, "public"),
     port: 3000,
   },
+  devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public/index.html"),
     }),
   ],
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
   module: {
     rules: [
       {
@@ -29,6 +33,11 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/i,

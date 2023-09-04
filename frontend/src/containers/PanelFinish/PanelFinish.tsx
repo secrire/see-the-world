@@ -1,7 +1,14 @@
-import React from "react";
 import { Stack, Typography, Button } from "@mui/material";
 
-const PanelFinish = ({ cities, clickPlayAgain, score }) => {
+import { CityType } from "../../pages/MapQuiz";
+
+type PanelFinishProps = {
+  cities: CityType[];
+  clickPlayAgain: () => void;
+  score: number;
+};
+
+const PanelFinish = ({ cities, clickPlayAgain, score }: PanelFinishProps) => {
   return (
     <>
       <Typography variant="h4" m="32px 0 20px">
